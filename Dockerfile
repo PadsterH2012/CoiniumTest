@@ -3,11 +3,13 @@ FROM mono:3.10-onbuild
 VOLUME Config
 VOLUME Coins
 
-COPY ./release ./TestingConsoleApp.exe
-COPY ./pools.json ./TestingConsoleApp.exe
-COPY ./TestingConsoleApp.exe ./TestingConsoleApp.exe
+ADD http://10.0.0.137/source/release ./release
+ADD http://10.0.0.137/source/config ./release/config
 
+COPY ./usr/local/bin/CoiniumServ/build/release ./release
+COPY ./config ./release/config
 
+EXPOSE 8081
 
-CMD [ "mono", "./TestingConsoleApp.exe" ]
+CMD ["mono", "./release/CoiniumServ.exe"]
 
