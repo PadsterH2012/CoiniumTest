@@ -1,4 +1,4 @@
-FROM ubuntu:latest 
+FROM mono:3.10-onbuild
 RUN apt-get update && apt-get install -y wget ca-certificates
 
 # Install Java7
